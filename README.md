@@ -10,18 +10,22 @@ Release candidate assets are published through GitHub Releases:
 
 - `pearl-proxy-linux-amd64`
 - `pearl-proxy-windows-amd64.exe`
+- `install-linux.sh`
 - `SHA256SUMS.txt`
 
-## Usage
+## Linux First-Time Install
 
-Create a deployment config from the private source template, inject the project
-dev wallet at build time, and run:
+Download `pearl-proxy-linux-amd64` and `install-linux.sh` from the release,
+then run:
 
 ```bash
-./pearl-proxy-linux-amd64 -config config.json
+chmod +x pearl-proxy-linux-amd64 install-linux.sh
+./install-linux.sh
 ```
 
-The dashboard endpoint and pool ports are controlled by `config.json`.
+The installer interactively sets the dashboard bind address, admin port, admin
+user, and admin password. Pool, wallet, and fee settings can be changed later in
+the web dashboard or by editing `config.json` on the server.
 
 ## Supported Profiles
 
