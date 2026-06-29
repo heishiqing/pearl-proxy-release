@@ -15,9 +15,13 @@ Usage: ./install-linux.sh [options]
 
 Interactive first-time Linux installer for pearl-proxy.
 
-The installer only asks for the admin/dashboard bootstrap settings. Pool,
-wallet, fee, and P-pool opaque-login settings can be changed later in the web
+The installer only asks for the admin panel port, username, and password. It
+generates a config with all supported pool addresses prefilled. Wallet, fee,
+ports, and P-pool opaque-login settings can be changed later in the web
 dashboard or by editing config.json on the server.
+
+Admin panel access defaults to 0.0.0.0, which means all server IPs listen and
+http://SERVER_IP:PORT works if the firewall allows it.
 
 Options:
   --install-dir DIR   Install directory, default: /opt/pearl-proxy
@@ -163,8 +167,8 @@ echo "== pearl-proxy first-time installer =="
 echo
 
 INSTALL_DIR="$(prompt_default "Install directory" "$INSTALL_DIR")"
-DASH_HOST="$(prompt_default "Dashboard bind host" "0.0.0.0")"
-DASH_PORT="$(prompt_default "Dashboard port" "8080")"
+DASH_HOST="0.0.0.0"
+DASH_PORT="$(prompt_default "Dashboard admin port" "8080")"
 while ! validate_port "$DASH_PORT"; do
   echo "Invalid port. Use 1-65535."
   DASH_PORT="$(prompt_default "Dashboard port" "8080")"
@@ -290,10 +294,11 @@ echo "== Install summary =="
 echo "Install dir:        $INSTALL_DIR"
 echo "Binary:             $BINARY_PATH"
 echo "Dashboard:          http://<server-ip>:$DASH_PORT"
-echo "Dashboard listen:   $dashboard_listen"
+echo "Dashboard listen:   $dashboard_listen (all server IPs)"
 echo "Dashboard user:     $DASH_USER"
 echo "Operator wallet:    set later in dashboard or config.json"
 echo "Operator fee:       set later in dashboard or config.json"
+echo "Pools:              all supported pool addresses are prefilled"
 echo "Pool ports:         default 19360-19366, editable later"
 echo "Systemd service:    $([[ "$ENABLE_SYSTEMD" -eq 1 ]] && echo yes || echo no)"
 echo
@@ -331,7 +336,8 @@ echo "  P pool:        19366"
 echo
 
 echo "Next setup:"
-echo "  Open the dashboard and set operator wallet, fee, pool ports, and any upstream changes."
+echo "  Open the dashboard and set operator wallet, fee, pool ports, or upstream changes."
+echo "  All supported pool addresses are already prefilled by default."
 echo "  Or edit $INSTALL_DIR/config.json on the server, then restart pearl-proxy."
 echo
 

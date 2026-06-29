@@ -23,9 +23,11 @@ chmod +x pearl-proxy-linux-amd64 install-linux.sh
 ./install-linux.sh
 ```
 
-The installer interactively sets the dashboard bind address, admin port, admin
-user, and admin password. Pool, wallet, and fee settings can be changed later in
-the web dashboard or by editing `config.json` on the server.
+The installer interactively sets only the admin port, admin user, and admin
+password. The panel listens on `0.0.0.0` by default, so
+`http://SERVER_IP:PORT` works when the firewall allows it. All supported pool
+addresses are prefilled. Wallet, fee, ports, and upstream settings can be
+changed later in the web dashboard or by editing `config.json` on the server.
 
 ## Supported Profiles
 
