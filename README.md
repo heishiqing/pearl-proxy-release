@@ -50,11 +50,7 @@ Windows 压缩包内包含：
 
 - `pearl-proxy-windows-amd64.exe`
 - `config.example.json`
-- `install-windows-watchdog.ps1`
-- `pearl-proxy-watchdog.ps1`
 - `README-WINDOWS.txt`
-
-如果只想手动运行，也可以直接下载 `pearl-proxy-windows-amd64.exe`。需要开机自启和后台守护时，建议下载完整 zip。
 
 Linux 发布文件通常包含：
 
@@ -66,34 +62,44 @@ Linux 发布文件通常包含：
 
 ## Windows 快速开始
 
+### 普通运行
+
+1. 下载 `pearl-proxy-windows-amd64.zip` 并解压。
+2. 把 `config.example.json` 复制一份，改名为 `config.json`。
+3. 双击 `pearl-proxy-windows-amd64.exe` 运行。
+4. 打开前端面板地址，例如 `http://127.0.0.1:28180` 或配置里的服务器 IP 地址。
+
+也可以只下载 `pearl-proxy-windows-amd64.exe`，但需要自己准备同目录下的 `config.json`。
+
+### 安装为后台服务
+
 1. 解压 `pearl-proxy-windows-amd64.zip`。
-2. 以管理员身份打开 PowerShell。
+2. 以管理员身份打开命令提示符。
 3. 在解压目录运行：
 
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\install-windows-watchdog.ps1 -Action Install
+```bat
+pearl-proxy-windows-amd64.exe -service install -config config.example.json
 ```
 
-安装脚本会：
+exe 会：
 
 - 复制程序到 `C:\ProgramData\pearl-proxy`
 - 复制默认配置
 - 创建开机自启任务
-- 启动后台守护服务
+- 启动内置后台守护
 - 打印前端面板地址
 
 常用命令：
 
-```powershell
-.\install-windows-watchdog.ps1 -Action Status
-.\install-windows-watchdog.ps1 -Action Restart
-.\install-windows-watchdog.ps1 -Action Stop
-.\install-windows-watchdog.ps1 -Action Start
-.\install-windows-watchdog.ps1 -Action Uninstall
+```bat
+pearl-proxy-windows-amd64.exe -service status
+pearl-proxy-windows-amd64.exe -service restart
+pearl-proxy-windows-amd64.exe -service stop
+pearl-proxy-windows-amd64.exe -service start
+pearl-proxy-windows-amd64.exe -service uninstall
 ```
 
-升级时直接用新压缩包再次运行安装命令即可。已有配置会继续复用 `C:\ProgramData\pearl-proxy\config.json`，除非手动加 `-Force`。
+升级时直接用新 exe 或新压缩包再次运行 `-service install` 即可。已有配置会继续复用 `C:\ProgramData\pearl-proxy\config.json`，除非手动加 `-force`。
 
 ## Linux 快速开始
 
@@ -195,11 +201,10 @@ Windows：
 
 1. 下载新的 `pearl-proxy-windows-amd64.zip`。
 2. 解压。
-3. 以管理员身份运行：
+3. 以管理员身份打开命令提示符并运行：
 
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\install-windows-watchdog.ps1 -Action Install
+```bat
+pearl-proxy-windows-amd64.exe -service install -config config.example.json
 ```
 
 已有配置默认保留。
