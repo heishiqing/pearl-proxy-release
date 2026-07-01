@@ -218,11 +218,4 @@ Windows：
 
 完整操作说明见：
 
-- [docs/USER_GUIDE.md](docs/USER_GUIDE.md)
-- [docs/INSTALL_LINUX.md](docs/INSTALL_LINUX.md)
-- [docs/WATCHDOG_STARTUP.md](docs/WATCHDOG_STARTUP.md)
-
-开发和设计文档见：
-
-- [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md)
-- [docs/RELEASE_TEST_PLAN.md](docs/RELEASE_TEST_PLAN.md)
+- [USER_GUIDE.md](USER_GUIDE.md)
