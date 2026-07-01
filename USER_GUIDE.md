@@ -98,7 +98,7 @@ http://127.0.0.1:28180
 
 ### 4.2 安装开机启动和守护
 
-开机启动和守护已经内置在 `pearl-proxy-windows-amd64.exe` 中，不需要额外 PowerShell 脚本。
+开机启动和守护已经内置在 `pearl-proxy-windows-amd64.exe` 中，不需要额外脚本。
 
 1. 解压 `pearl-proxy-windows-amd64.zip`。
 2. 以管理员身份打开命令提示符。
