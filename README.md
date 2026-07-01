@@ -41,16 +41,16 @@ pearl-proxy 是一个 PRL / Pearl 矿池中转管理程序。矿机连接到 pea
 请在 GitHub Releases 下载当前版本：
 
 - Windows：`pearl-proxy-windows-amd64.zip`
-- Windows 单文件：`pearl-proxy-windows-amd64.exe`
-- Linux：`pearl-proxy-linux-amd64`
-- 校验文件：`SHA256SUMS.txt`
+- Linux：`pearl-proxy-linux-amd64.tar.gz`
+
+普通用户只需要下载对应系统的一个压缩包。
 
 Windows 压缩包内包含：
 
 - `pearl-proxy-windows-amd64.exe`
 - `README-WINDOWS.txt`
 
-Linux 发布文件通常包含：
+Linux 压缩包内包含：
 
 - `pearl-proxy-linux-amd64`
 - `install-linux.sh`
@@ -60,7 +60,7 @@ Linux 发布文件通常包含：
 
 ## Windows 快速开始
 
-1. 下载 `pearl-proxy-windows-amd64.exe`，或下载 zip 后解压。
+1. 下载 `pearl-proxy-windows-amd64.zip` 并解压。
 2. 双击 `pearl-proxy-windows-amd64.exe`。
 3. exe 会打开自己的 pearl-proxy 前端窗口。
 4. 第一次打开时，窗口里会显示前端端口和访问地址；默认端口是 `28180`。
@@ -84,12 +84,12 @@ http://服务器IP:28180
 
 ## Linux 快速开始
 
-把这些文件放在同一个目录：
+下载 `pearl-proxy-linux-amd64.tar.gz`，上传到服务器并解压：
 
-- `pearl-proxy-linux-amd64`
-- `install-linux.sh`
-- `pearl-proxy-watchdog.sh`
-- `pp.sh`
+```bash
+tar -xzf pearl-proxy-linux-amd64.tar.gz
+cd linux-bundle-0.0.2
+```
 
 运行：
 
@@ -180,8 +180,8 @@ pp
 
 Windows：
 
-1. 下载新的 `pearl-proxy-windows-amd64.exe`。
-2. 替换旧 exe。
+1. 下载新的 `pearl-proxy-windows-amd64.zip`。
+2. 解压后替换旧 exe。
 3. 双击运行。
 
 已有配置默认保留。
