@@ -10,7 +10,6 @@ pearl-proxy 是一个 PRL / Pearl 矿池中转管理程序。矿机连接到 pea
 - 网页面板配置矿池、上游节点、监听端口和 fee。
 - 支持每个监听端口单独设置 fee，留空时使用系统默认 fee。
 - 支持一键创建已适配矿池端口。
-- 支持 Windows 开机自启和后台守护。
 - 支持 Linux systemd 开机自启、守护脚本和 `pp` 交互菜单。
 - 支持在线矿工数、运行时间、端口健康状态、矿池列表和运行数据展示。
 - 支持检查更新和一键更新。
@@ -49,7 +48,6 @@ pearl-proxy 是一个 PRL / Pearl 矿池中转管理程序。矿机连接到 pea
 Windows 压缩包内包含：
 
 - `pearl-proxy-windows-amd64.exe`
-- `config.example.json`
 - `README-WINDOWS.txt`
 
 Linux 发布文件通常包含：
@@ -62,44 +60,27 @@ Linux 发布文件通常包含：
 
 ## Windows 快速开始
 
-### 普通运行
+1. 下载 `pearl-proxy-windows-amd64.exe`，或下载 zip 后解压。
+2. 双击 `pearl-proxy-windows-amd64.exe`。
+3. exe 会打开自己的 pearl-proxy 前端窗口。
+4. 第一次打开时，窗口里会显示前端端口和访问地址；默认端口是 `28180`。
+5. 后续矿池端口、钱包、fee 都在前端页面里设置。
 
-1. 下载 `pearl-proxy-windows-amd64.zip` 并解压。
-2. 把 `config.example.json` 复制一份，改名为 `config.json`。
-3. 双击 `pearl-proxy-windows-amd64.exe` 运行。
-4. 打开前端面板地址，例如 `http://127.0.0.1:28180` 或配置里的服务器 IP 地址。
+本机访问地址：
 
-也可以只下载 `pearl-proxy-windows-amd64.exe`，但需要自己准备同目录下的 `config.json`。
-
-### 安装为后台服务
-
-1. 解压 `pearl-proxy-windows-amd64.zip`。
-2. 以管理员身份打开命令提示符。
-3. 在解压目录运行：
-
-```bat
-pearl-proxy-windows-amd64.exe -service install -config config.example.json
+```text
+http://127.0.0.1:28180
 ```
 
-exe 会：
+外部电脑访问地址：
 
-- 复制程序到 `C:\ProgramData\pearl-proxy`
-- 复制默认配置
-- 创建开机自启任务
-- 启动内置后台守护
-- 打印前端面板地址
-
-常用命令：
-
-```bat
-pearl-proxy-windows-amd64.exe -service status
-pearl-proxy-windows-amd64.exe -service restart
-pearl-proxy-windows-amd64.exe -service stop
-pearl-proxy-windows-amd64.exe -service start
-pearl-proxy-windows-amd64.exe -service uninstall
+```text
+http://服务器IP:28180
 ```
 
-升级时直接用新 exe 或新压缩包再次运行 `-service install` 即可。已有配置会继续复用 `C:\ProgramData\pearl-proxy\config.json`，除非手动加 `-force`。
+保持 pearl-proxy 窗口运行即可。关闭窗口就是停止 pearl-proxy。
+
+首次运行会自动生成 `config.json`，不需要手动复制配置文件。
 
 ## Linux 快速开始
 
@@ -199,13 +180,9 @@ pp
 
 Windows：
 
-1. 下载新的 `pearl-proxy-windows-amd64.zip`。
-2. 解压。
-3. 以管理员身份打开命令提示符并运行：
-
-```bat
-pearl-proxy-windows-amd64.exe -service install -config config.example.json
-```
+1. 下载新的 `pearl-proxy-windows-amd64.exe`。
+2. 替换旧 exe。
+3. 双击运行。
 
 已有配置默认保留。
 
@@ -241,4 +218,11 @@ pearl-proxy-windows-amd64.exe -service install -config config.example.json
 
 完整操作说明见：
 
-- [USER_GUIDE.md](USER_GUIDE.md)
+- [docs/USER_GUIDE.md](docs/USER_GUIDE.md)
+- [docs/INSTALL_LINUX.md](docs/INSTALL_LINUX.md)
+- [docs/WATCHDOG_STARTUP.md](docs/WATCHDOG_STARTUP.md)
+
+开发和设计文档见：
+
+- [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md)
+- [docs/RELEASE_TEST_PLAN.md](docs/RELEASE_TEST_PLAN.md)

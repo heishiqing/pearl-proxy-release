@@ -66,7 +66,7 @@ Windows 用户下载：
 pearl-proxy-windows-amd64.zip
 ```
 
-如果只想手动运行，也可以下载：
+也可以只下载单文件：
 
 ```text
 pearl-proxy-windows-amd64.exe
@@ -83,86 +83,22 @@ pp.sh
 
 ## 4. Windows 使用
 
-### 4.1 普通运行
+Windows 端按普通软件使用即可，不需要 PowerShell，不需要复制配置文件。
 
-1. 解压 `pearl-proxy-windows-amd64.zip`。
-2. 把 `config.example.json` 复制一份，改名为 `config.json`。
-3. 双击 `pearl-proxy-windows-amd64.exe`。
-4. 用浏览器打开配置里的管理面板地址，例如：
-
-```text
-http://127.0.0.1:28180
-```
-
-只下载单独 exe 也可以，但必须自己准备同目录下的 `config.json`。
-
-### 4.2 安装开机启动和守护
-
-开机启动和守护已经内置在 `pearl-proxy-windows-amd64.exe` 中，不需要额外脚本。
-
-1. 解压 `pearl-proxy-windows-amd64.zip`。
-2. 以管理员身份打开命令提示符。
-3. 进入解压目录。
-4. 运行：
-
-```bat
-pearl-proxy-windows-amd64.exe -service install -config config.example.json
-```
-
-安装完成后，exe 会输出：
+1. 下载 `pearl-proxy-windows-amd64.exe`，或下载 zip 后解压。
+2. 双击 `pearl-proxy-windows-amd64.exe`。
+3. exe 会打开自己的 pearl-proxy 前端窗口。
+4. 第一次打开时，窗口里会显示前端端口输入框，默认 `28180`。
+5. 窗口里会显示两个访问地址：
 
 ```text
-Dashboard: http://服务器IP:端口
+本机访问地址：http://127.0.0.1:28180
+外部电脑访问：http://服务器IP:28180
 ```
 
-用浏览器打开这个地址进入管理面板。
+后续矿池端口、钱包、fee、重启端口服务都在前端页面里操作。
 
-### 4.3 Windows 安装位置
-
-默认安装到：
-
-```text
-C:\ProgramData\pearl-proxy
-```
-
-常用文件：
-
-```text
-C:\ProgramData\pearl-proxy\config.json
-C:\ProgramData\pearl-proxy\logs
-C:\ProgramData\pearl-proxy\pearl-proxy-windows-amd64.exe
-```
-
-### 4.4 Windows 常用命令
-
-在发布包目录中运行：
-
-```bat
-pearl-proxy-windows-amd64.exe -service status
-pearl-proxy-windows-amd64.exe -service restart
-pearl-proxy-windows-amd64.exe -service stop
-pearl-proxy-windows-amd64.exe -service start
-pearl-proxy-windows-amd64.exe -service uninstall
-```
-
-### 4.5 Windows 升级
-
-1. 下载新版本 zip。
-2. 解压。
-3. 以管理员身份打开命令提示符。
-4. 运行：
-
-```bat
-pearl-proxy-windows-amd64.exe -service install -config config.example.json
-```
-
-默认会复用旧配置：
-
-```text
-C:\ProgramData\pearl-proxy\config.json
-```
-
-只有加 `-force` 才会覆盖旧配置。
+首次运行会自动生成同目录下的 `config.json`。升级时把新 exe 放到原目录运行，旧配置会继续复用。
 
 ## 5. Linux 安装
 
@@ -245,9 +181,7 @@ journalctl -u pearl-proxy -f
 
 Windows：
 
-```bat
-pearl-proxy-windows-amd64.exe -service status
-```
+双击 `pearl-proxy-windows-amd64.exe` 后，程序会打开自己的 pearl-proxy 前端窗口；默认地址是 `http://127.0.0.1:28180`。
 
 Linux：
 
@@ -464,25 +398,15 @@ pp
 
 ### 11.2 Windows 更新
 
-下载新版本 zip 后，重复安装：
+关闭正在运行的旧程序，把新版 `pearl-proxy-windows-amd64.exe` 放到原目录，再双击启动。
 
-```bat
-pearl-proxy-windows-amd64.exe -service install -config config.example.json
-```
-
-默认保留：
-
-```text
-C:\ProgramData\pearl-proxy\config.json
-```
+同目录下的 `config.json` 会继续复用。
 
 ## 12. 日志
 
 ### 12.1 Windows 日志
 
-```text
-C:\ProgramData\pearl-proxy\logs
-```
+普通双击运行时，日志显示在程序窗口里。排查问题时不要先关闭窗口，直接查看窗口里最后几行错误。
 
 ### 12.2 Linux 日志
 
@@ -550,15 +474,7 @@ journalctl -u pearl-proxy -f
 - AlphaPool 是否使用 alpha-miner 1.8.6+。
 - PearlFortune 是否已在矿池网页绑定 MDL。
 
-### 13.6 Windows 安装开机启动失败
-
-检查：
-
-- 是否以管理员身份打开命令提示符。
-- 是否在 exe 所在目录执行命令。
-- 同目录是否有 `config.example.json`，或是否已经准备好 `config.json`。
-
-### 13.7 配置文件手动编辑后启动失败
+### 13.6 配置文件手动编辑后启动失败
 
 检查 JSON 格式。
 
@@ -576,7 +492,7 @@ journalctl -u pearl-proxy -f
 Windows：
 
 ```text
-C:\ProgramData\pearl-proxy\config.json
+exe 同目录\config.json
 ```
 
 Linux：
