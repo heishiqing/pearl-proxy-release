@@ -42,6 +42,7 @@ pearl-proxy 是一个 PRL / Pearl 矿池中转管理程序。矿机连接到 pea
 请在 GitHub Releases 下载当前版本：
 
 - Windows：`pearl-proxy-windows-amd64.zip`
+- Windows 单文件：`pearl-proxy-windows-amd64.exe`
 - Linux：`pearl-proxy-linux-amd64`
 - 校验文件：`SHA256SUMS.txt`
 
@@ -52,6 +53,8 @@ Windows 压缩包内包含：
 - `install-windows-watchdog.ps1`
 - `pearl-proxy-watchdog.ps1`
 - `README-WINDOWS.txt`
+
+如果只想手动运行，也可以直接下载 `pearl-proxy-windows-amd64.exe`。需要开机自启和后台守护时，建议下载完整 zip。
 
 Linux 发布文件通常包含：
 
